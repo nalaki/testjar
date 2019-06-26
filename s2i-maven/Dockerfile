@@ -1,4 +1,5 @@
-FROM openshift/base-centos7
+FROM gins-dev/basebe:1.0
+#FROM openshift/base-centos7
 #FROM nalaki/centos7-maven:v1
 #FROM java:8
 
