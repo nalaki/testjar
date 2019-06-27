@@ -19,10 +19,15 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \
     mkdir -p /opt/s2i/destination
-	
-#COPY ./settings.xml /usr/share/maven/conf
+# S2I scripts
+COPY ./s2i/bin/ /usr/libexec/s2i
+#Fix permission
+RUN chmod +x /usr/libexec/s2i/assemble 
+RUN chmod +x /usr/libexec/s2i/run 
+RUN chmod +x /usr/libexec/s2i/save-artifacts 
+RUN chmod +x /usr/libexec/s2i/usage
 
-ADD ./target/*.jar app.jar
+#COPY ./settings.xml /usr/share/maven/conf
 
 RUN chown -R 1001:1001 ./
 #opt/app-root
@@ -30,6 +35,4 @@ USER 1001
 
 EXPOSE 8090
 
-
-# Run the jar file 
-ENTRYPOINT ["java","-Dspring.profiles.active=dev -Doracle.jdbc.timezoneAsRegion=false","-jar","app.jar"]
+CMD ["/usr/libexec/s2i/usage"]
