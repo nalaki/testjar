@@ -1,6 +1,5 @@
-FROM gins-dev/basebe:1.0
-#FROM openshift/base-centos7
-#FROM nalaki/centos7-maven:v1
+#FROM gins-dev/basebe:1.0
+FROM openshift/base-centos7
 #FROM java:8
 
 ENV MAVEN_VERSION=3.6.0
