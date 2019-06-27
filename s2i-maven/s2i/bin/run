@@ -8,5 +8,4 @@
 #
 
 #exec java $JAVA_PARAMS -jar /opt/app-root/app.jar
-exec java -jar -Dspring.profiles.active=dev -Doracle.jdbc.timezoneAsRegion=false /opt/app-root/app.jar
-
+exec java -jar -Dspring.profiles.active=prod -Doracle.jdbc.timezoneAsRegion=false /opt/app-root/app.jar
